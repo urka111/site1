@@ -6,11 +6,14 @@
     <title>Курс "Особисті Кордони" - Ірина Рудницька</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <style>
         :root {
             --primary-color: #004f4d;
             --secondary-color: #006b68;
             --accent-color: #e8f5f4;
+            --gradient-light: #008b8b;
             --text-color: #333;
             --light-text: #666;
             --white: #ffffff;
@@ -20,6 +23,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
@@ -29,48 +33,64 @@
             background-color: #f9f9f9;
         }
 
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .section:nth-child(even) {
+            background-color: var(--accent-color);
+        }
+
         .sticky-nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: var(--primary-color);
+            background: rgba(0, 79, 77, 0.95);
             padding: 1rem;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
         }
 
         .nav-links {
-            max-width: 1200px;
-            margin: 0 auto;
             display: flex;
             justify-content: center;
             gap: 2rem;
+            flex-wrap: wrap;
         }
 
         .nav-links a {
             color: var(--white);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s;
         }
 
         .nav-links a:hover {
-            color: var(--accent-color);
+            background: rgba(255,255,255,0.1);
         }
 
         .hero {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary-color), var(--gradient-light));
+            color: var(--white);
             display: flex;
             align-items: center;
-            justify-content: center;
             text-align: center;
-            padding: 2rem;
-            color: var(--white);
+            padding: 7rem 2rem 5rem;
         }
 
         .hero-content {
             max-width: 800px;
+            margin: 0 auto;
         }
 
         .hero h1 {
@@ -78,39 +98,21 @@
             margin-bottom: 1.5rem;
         }
 
-        .hero p {
-            font-size: 1.5rem;
+        .hero .lead {
+            font-size: 2rem;
             margin-bottom: 2rem;
-            opacity: 0.9;
         }
 
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: var(--white);
-            color: var(--primary-color);
-            text-decoration: none;
+        .price-tag {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem 2rem;
             border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.2rem;
-            transition: transform 0.3s, box-shadow 0.3s;
+            backdrop-filter: blur(5px);
+            display: inline-block;
+            margin-top: 2rem;
         }
 
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .section {
-            padding: 5rem 2rem;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .features {
+        .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
@@ -121,8 +123,8 @@
             background: var(--white);
             padding: 2rem;
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s;
         }
 
         .feature-card:hover {
@@ -135,6 +137,40 @@
             margin-bottom: 1rem;
         }
 
+        .program-list {
+            list-style: none;
+            counter-reset: program-counter;
+        }
+
+        .program-item {
+            background: var(--white);
+            margin-bottom: 2rem;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            padding-left: 4rem;
+        }
+
+        .program-item::before {
+            counter-increment: program-counter;
+            content: counter(program-counter);
+            position: absolute;
+            left: -1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3.5rem;
+            height: 3.5rem;
+            background: var(--secondary-color);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
         .section-title {
             text-align: center;
             font-size: 2.5rem;
@@ -142,38 +178,66 @@
             margin-bottom: 3rem;
         }
 
-        .price-tag {
-            background: var(--accent-color);
-            padding: 0.5rem 1rem;
+        .benefits-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .benefits-list li {
+            padding: 1rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .benefits-list li::before {
+            content: '✓';
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .faq-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--white);
+            color: var(--primary-color);
+            text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
-            color: var(--primary-color);
-            display: inline-block;
-            margin-top: 1rem;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            margin-top: 2rem;
         }
 
-        .testimonials {
-            background: var(--accent-color);
-        }
-
-        .testimonial-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 15px;
-            margin: 1rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            gap: 1.5rem;
             margin-top: 2rem;
         }
 
         .social-links a {
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             background: var(--primary-color);
             color: var(--white);
@@ -191,83 +255,110 @@
         footer {
             background: var(--primary-color);
             color: var(--white);
-            padding: 3rem 2rem;
+            padding: 3rem 0;
             text-align: center;
         }
 
-        /* Додаткові стилі для списку програми курсу */
-        .program-list {
-            list-style: none;
-            counter-reset: program-counter;
-        }
-
-        .program-list li {
-            counter-increment: program-counter;
-            padding: 1.5rem;
-            background: var(--white);
-            margin-bottom: 1rem;
-            border-radius: 10px;
-            position: relative;
-            padding-left: 3rem;
-        }
-
-        .program-list li::before {
-            content: counter(program-counter);
-            position: absolute;
-            left: -20px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--secondary-color);
-            color: var(--white);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .lead {
+                font-size: 1.5rem;
+            }
+            
+            .section {
+                padding: 4rem 0;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.8rem;
+            }
         }
     </style>
 </head>
 <body>
     <nav class="sticky-nav">
         <div class="nav-links">
-            <a href="#about">Про курс</a>
+            <a href="#hero">Головна</a>
+            <a href="#about">Про автора</a>
+            <a href="#for-whom">Для кого</a>
             <a href="#program">Програма</a>
             <a href="#benefits">Переваги</a>
-            <a href="#testimonials">Відгуки</a>
-            <a href="#pricing">Вартість</a>
+            <a href="#faq">FAQ</a>
         </div>
     </nav>
 
-    <section class="hero">
-        <div class="hero-content">
+    <section id="hero" class="hero">
+        <div class="hero-content" data-aos="fade-up">
             <h1>Набридло бути "хорошою дівчинкою"?</h1>
-            <p>Курс, який навчить тебе твердо відстоювати свої кордони без почуття провини</p>
+            <p class="lead">Не вмієш казати НІ?</p>
+            <h2>Приєднуйся до курсу, який навчить тебе твердо відстоювати свої кордони без почуття провини</h2>
+            
+            <div class="price-tag">
+                <i class="fas fa-tag"></i> 890 грн замість 2250 грн
+                <br>
+                <small>Знижка 60% тільки до нового року!</small>
+            </div>
+            
             <a href="#pricing" class="cta-button">
                 <i class="fas fa-lock-open"></i> Отримати доступ
             </a>
-            <div class="price-tag">
-                <i class="fas fa-tag"></i> 890 грн замість 2250 грн
-            </div>
         </div>
     </section>
 
     <section id="about" class="section">
         <div class="container">
             <h2 class="section-title">Про автора</h2>
-            <div class="feature-card">
+            <div class="feature-card" data-aos="fade-up">
                 <div class="feature-icon">
                     <i class="fas fa-user-graduate"></i>
                 </div>
                 <h3>Ірина Рудницька</h3>
-                <p><em>Психолог, з яким безпечно</em></p>
-                <ul>
+                <p><em>психолог, з яким безпечно</em></p>
+                <ul class="benefits-list">
                     <li><strong>10 років</strong> досвіду у психотерапії</li>
-                    <li><strong>1500+</strong> задоволених клієнтів</li>
-                    <li>Сертифікований психотерапевт у 6-ти методах</li>
-                    <li>28,000+ підписників в Instagram</li>
+                    <li>Більше <strong>1500 задоволених клієнтів</strong></li>
+                    <li>Сертифікований психотерапевт у <strong>6-ти різних методах</strong> (ППТ, КПТ, EMDR...)</li>
+                    <li>Більше <strong>28 тис слідкувачів</strong> та мільйони переглядів у instagram</li>
                 </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="for-whom" class="section">
+        <div class="container">
+            <h2 class="section-title">Цей курс точно для тебе, якщо:</h2>
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart-broken"></i>
+                    </div>
+                    <h3>Ти знецінюєш свої емоції</h3>
+                    <p>Вважаєш що твої проблеми нічого не варті, кажеш собі "та що там я, в когось набагато гірше"</p>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Вдома ти робиш все за всіх</h3>
+                    <p>І всі вважають це нормою, сприймаючи тебе за хатню робітницю</p>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Твої колеги скидають на тебе всю роботу</h3>
+                    <p>І навіть не дякують за її виконання, сприймаючи це за данність</p>
+                </div>
             </div>
         </div>
     </section>
@@ -275,34 +366,38 @@
     <section id="program" class="section">
         <div class="container">
             <h2 class="section-title">Програма курсу</h2>
-            <ol class="program-list">
-                <li>
-                    <h3>Вступний урок</h3>
-                    <p>Виявлення болючих точок та робота з травмуючими спогадами</p>
-                </li>
-                <!-- Додайте інші уроки згідно з наданим текстом -->
-            </ol>
+            <div class="program-list">
+                <div class="program-item" data-aos="fade-right">
+                    <h3>Урок 1. Вступний урок</h3>
+                    <ul>
+                        <li>Виявлення болючих точок на ваших кордонах</li>
+                        <li>Практика – усвідомлення "Як я не хочу і як я хочу"</li>
+                        <li>Робота з травмуючими спогадами з допомогою РІРА- практики EMDR</li>
+                    </ul>
+                </div>
+                <!-- Додати інші уроки аналогічно -->
+            </div>
         </div>
     </section>
 
     <section id="benefits" class="section">
         <div class="container">
-            <h2 class="section-title">Після курсу ви навчитесь</h2>
-            <div class="features">
-                <div class="feature-card">
+            <h2 class="section-title">Після курсу ти навчишся:</h2>
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up">
                     <div class="feature-icon">
-                        <i class="fas fa-comment-dots"></i>
+                        <i class="fas fa-comment"></i>
                     </div>
-                    <h3>Впевнено висловлювати думку</h3>
-                    <p>Включно з незгодою з іншими</p>
+                    <h3>Впевнено висловлювати свою думку</h3>
+                    <p>В тому числі і незгоду з кимось</p>
                 </div>
-                <!-- Додайте інші переваги згідно з наданим текстом -->
+                <!-- Додати інші переваги аналогічно -->
             </div>
         </div>
     </section>
 
-    <section id="testimonials" class="section testimonials">
+    <section id="faq" class="section">
         <div class="container">
-            <h2 class="section-title">Відгуки учасників</h2>
-            <div class="testimonial-card">
-                <i class="fas fa-quote-left"></i
+            <h2 class="section-title">Питання/відповіді</h2>
+            <div class="faq-item" data-aos="fade-up">
+                <h3>Я купую курси і не проходжу. Швидко загораюсь і тухну
