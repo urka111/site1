@@ -10,44 +10,113 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f8f8f8;
+            background-color: #f3f3f3;
             color: #333;
         }
+
         header {
-            background-color: #073b3a;
-            color: white;
+            background-color: #003d3b;
+            color: #ffffff;
             text-align: center;
             padding: 2rem 1rem;
         }
+
         header h1 {
             margin: 0;
-            font-size: 2rem;
+            font-size: 2.5rem;
         }
+
+        header p {
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 1rem;
+            padding: 2rem;
         }
+
         section {
-            margin-bottom: 2rem;
-            padding: 1rem;
-            background: white;
+            background: #ffffff;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
         }
-        .lesson {
+
+        section h2 {
+            color: #003d3b;
+            font-size: 2rem;
             margin-bottom: 1rem;
         }
-        .lesson h2 {
-            margin: 0;
-            font-size: 1.5rem;
-            color: #073b3a;
+
+        .lesson {
+            margin-bottom: 1.5rem;
         }
+
+        .lesson h3 {
+            color: #006b68;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .lesson p {
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
         footer {
+            background-color: #003d3b;
+            color: #ffffff;
             text-align: center;
             padding: 1rem;
-            background-color: #073b3a;
-            color: white;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .cta {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .cta button {
+            background-color: #006b68;
+            color: #ffffff;
+            font-size: 1rem;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .cta button:hover {
+            background-color: #004f4d;
+        }
+
+        .testimonial {
+            background-color: #e8f5f4;
+            border-left: 4px solid #006b68;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+        }
+
+        .testimonial p {
+            margin: 0;
+        }
+
+        .testimonial span {
+            display: block;
+            margin-top: 0.5rem;
+            text-align: right;
+            font-weight: bold;
+            color: #003d3b;
         }
     </style>
 </head>
@@ -61,6 +130,9 @@
         <section>
             <h2>Про Курс</h2>
             <p>Цей курс допоможе вам зрозуміти, що таке особисті кордони, чому вони важливі і як їх захищати в різних аспектах життя.</p>
+            <div class="cta">
+                <button>Долучитися до курсу</button>
+            </div>
         </section>
 
         <section>
@@ -85,8 +157,10 @@
 
         <section>
             <h2>Відгуки</h2>
-            <p>"Цей курс змінив моє життя! Тепер я вмію говорити 'ні' без почуття провини."</p>
-            <p>- Олена</p>
+            <div class="testimonial">
+                <p>"Цей курс змінив моє життя! Тепер я вмію говорити 'ні' без почуття провини."</p>
+                <span>- Олена</span>
+            </div>
         </section>
     </div>
 
@@ -95,3 +169,4 @@
     </footer>
 </body>
 </html>
+
