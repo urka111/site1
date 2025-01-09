@@ -3,248 +3,306 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Курс "Особисті Кордони"</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Курс "Особисті Кордони" - Ірина Рудницька</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body {
-            font-family: 'Montserrat', sans-serif;
+        :root {
+            --primary-color: #004f4d;
+            --secondary-color: #006b68;
+            --accent-color: #e8f5f4;
+            --text-color: #333;
+            --light-text: #666;
+            --white: #ffffff;
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f3f4f6;
-            color: #333;
+            box-sizing: border-box;
         }
 
-        header {
-            background: linear-gradient(135deg, #004f4d, #006b68);
-            color: #ffffff;
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+        }
+
+        .sticky-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--primary-color);
+            padding: 1rem;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-links {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 3rem 1rem;
+            padding: 2rem;
+            color: var(--white);
         }
 
-        header h1 {
-            margin: 0;
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
             font-size: 3.5rem;
-            font-weight: 700;
+            margin-bottom: 1.5rem;
         }
 
-        header p {
-            font-size: 1.3rem;
-            margin-top: 1rem;
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--white);
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .section {
+            padding: 5rem 2rem;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: var(--white);
             padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
         }
 
-        section {
-            background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            padding: 2.5rem;
-            margin-bottom: 2.5rem;
-            transition: transform 0.3s ease;
-        }
-
-        section:hover {
+        .feature-card:hover {
             transform: translateY(-5px);
         }
 
-        section h2 {
-            color: #004f4d;
-            font-size: 2.4rem;
-            margin-bottom: 1.2rem;
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
         }
 
-        .lesson {
-            margin-bottom: 2rem;
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 3rem;
         }
 
-        .lesson h3 {
-            color: #006b68;
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
+        .price-tag {
+            background: var(--accent-color);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            color: var(--primary-color);
+            display: inline-block;
+            margin-top: 1rem;
         }
 
-        .lesson p {
-            margin: 0;
-            font-size: 1.1rem;
-            line-height: 1.6;
+        .testimonials {
+            background: var(--accent-color);
         }
 
-        .lesson img {
-            max-width: 100%;
-            border-radius: 8px;
-            margin-top: 0.5rem;
+        .testimonial-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
         }
 
         footer {
-            background: #004f4d;
-            color: #ffffff;
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 3rem 2rem;
             text-align: center;
-            padding: 2rem 1rem;
-            margin-top: 2rem;
         }
 
-        footer p {
-            margin: 0;
-            font-size: 1rem;
+        /* Додаткові стилі для списку програми курсу */
+        .program-list {
+            list-style: none;
+            counter-reset: program-counter;
         }
 
-        .cta {
-            text-align: center;
-            margin-top: 2rem;
+        .program-list li {
+            counter-increment: program-counter;
+            padding: 1.5rem;
+            background: var(--white);
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            position: relative;
+            padding-left: 3rem;
         }
 
-        .cta button {
-            background: linear-gradient(135deg, #006b68, #004f4d);
-            color: #ffffff;
-            font-size: 1.2rem;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: transform 0.3s ease, background 0.3s ease;
-            font-weight: 700;
-        }
-
-        .cta button:hover {
-            background: linear-gradient(135deg, #004f4d, #006b68);
-            transform: scale(1.1);
-        }
-
-        .testimonial {
-            background: #e8f5f4;
-            border-left: 6px solid #006b68;
-            padding: 2rem;
-            margin: 2rem 0;
-            font-style: italic;
-            border-radius: 8px;
-        }
-
-        .testimonial span {
-            display: block;
-            margin-top: 0.8rem;
-            text-align: right;
-            font-weight: 600;
-            color: #004f4d;
-        }
-
-        .photo-placeholder {
-            background-color: #d9d9d9;
-            width: 100%;
-            height: 200px;
+        .program-list li::before {
+            content: counter(program-counter);
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--secondary-color);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             display: flex;
-            justify-content: center;
             align-items: center;
-            border-radius: 12px;
-            color: #555;
-            font-size: 1.4rem;
-            margin-top: 1.2rem;
-        }
-
-        nav {
-            background-color: #006b68;
-            padding: 1rem;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        nav a {
-            color: #ffffff;
-            margin: 0 1rem;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        nav a:hover {
-            color: #f3f4f6;
-        }
-
-        .action-buttons {
-            text-align: center;
-            margin-top: 2rem;
-        }
-
-        .action-buttons a {
-            display: inline-block;
-            margin: 0.5rem;
-            text-decoration: none;
-            background-color: #004f4d;
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 6px;
+            justify-content: center;
             font-weight: bold;
-            transition: background 0.3s;
-        }
-
-        .action-buttons a:hover {
-            background-color: #006b68;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Курс "Особисті Кордони"</h1>
-        <p>Навчіться захищати свої кордони і ставити здорові межі!</p>
-    </header>
-
-    <nav>
-        <a href="#about">Про курс</a>
-        <a href="#plan">План курсу</a>
-        <a href="#reviews">Відгуки</a>
+    <nav class="sticky-nav">
+        <div class="nav-links">
+            <a href="#about">Про курс</a>
+            <a href="#program">Програма</a>
+            <a href="#benefits">Переваги</a>
+            <a href="#testimonials">Відгуки</a>
+            <a href="#pricing">Вартість</a>
+        </div>
     </nav>
 
-    <div class="container">
-        <section id="about">
-            <h2>Про Курс</h2>
-            <p>Цей курс допоможе вам зрозуміти, що таке особисті кордони, чому вони важливі і як їх захищати в різних аспектах життя.</p>
-            <div class="photo-placeholder">Фото курсу</div>
-            <div class="cta">
-                <button>Долучитися до курсу</button>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Набридло бути "хорошою дівчинкою"?</h1>
+            <p>Курс, який навчить тебе твердо відстоювати свої кордони без почуття провини</p>
+            <a href="#pricing" class="cta-button">
+                <i class="fas fa-lock-open"></i> Отримати доступ
+            </a>
+            <div class="price-tag">
+                <i class="fas fa-tag"></i> 890 грн замість 2250 грн
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="plan">
-            <h2>План Курсів</h2>
-            <div class="lesson">
-                <h3>Урок 1</h3>
-                <p>Вступ до концепції особистих кордонів.</p>
-                <div class="photo-placeholder">Фото уроку 1</div>
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">Про автора</h2>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+                <h3>Ірина Рудницька</h3>
+                <p><em>Психолог, з яким безпечно</em></p>
+                <ul>
+                    <li><strong>10 років</strong> досвіду у психотерапії</li>
+                    <li><strong>1500+</strong> задоволених клієнтів</li>
+                    <li>Сертифікований психотерапевт у 6-ти методах</li>
+                    <li>28,000+ підписників в Instagram</li>
+                </ul>
             </div>
-            <div class="lesson">
-                <h3>Урок 2</h3>
-                <p>Як розпізнати порушення кордонів?</p>
-                <div class="photo-placeholder">Фото уроку 2</div>
-            </div>
-            <div class="lesson">
-                <h3>Урок 3</h3>
-                <p>Стратегії встановлення здорових меж.</p>
-                <div class="photo-placeholder">Фото уроку 3</div>
-            </div>
-            <div class="lesson">
-                <h3>Бонус</h3>
-                <p>Чек-лист для перевірки ваших кордонів.</p>
-                <div class="photo-placeholder">Фото бонусу</div>
-            </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="reviews">
-            <h2>Відгуки</h2>
-            <div class="testimonial">
-                <p>"Цей курс змінив моє життя! Тепер я вмію говорити 'ні' без почуття провини."</p>
-                <span>- Олена</span>
+    <section id="program" class="section">
+        <div class="container">
+            <h2 class="section-title">Програма курсу</h2>
+            <ol class="program-list">
+                <li>
+                    <h3>Вступний урок</h3>
+                    <p>Виявлення болючих точок та робота з травмуючими спогадами</p>
+                </li>
+                <!-- Додайте інші уроки згідно з наданим текстом -->
+            </ol>
+        </div>
+    </section>
+
+    <section id="benefits" class="section">
+        <div class="container">
+            <h2 class="section-title">Після курсу ви навчитесь</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comment-dots"></i>
+                    </div>
+                    <h3>Впевнено висловлювати думку</h3>
+                    <p>Включно з незгодою з іншими</p>
+                </div>
+                <!-- Додайте інші переваги згідно з наданим текстом -->
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 
-    <footer>
-        <p>&copy; 2025 Ваш курс "Особисті Кордони". Всі права захищені.</p>
-    </footer>
-</body>
-</html>
-
+    <section id="testimonials" class="section testimonials">
+        <div class="container">
+            <h2 class="section-title">Відгуки учасників</h2>
+            <div class="testimonial-card">
+                <i class="fas fa-quote-left"></i
